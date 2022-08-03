@@ -10,13 +10,20 @@ const usersKey = 'angular-11-crud-example-users';
 const usersJSON = localStorage.getItem(usersKey);
 let users: any[] = usersJSON ? JSON.parse(usersJSON) : [{
     id: 1,
-    title: 'Mr',
     firstName: 'Joe',
-    lastName: 'Bloggs',
-    email: 'joe@bloggs.com',
-    role: Role.User,
-    password: 'joe123'
-}];
+    lastName: 'Bloggs'
+},
+{
+    id: 2,
+    firstName: 'Tej',
+    lastName: 'Singh'
+},
+{
+    id: 3,
+    firstName: 'Bhupendra',
+    lastName: 'Singh'
+}
+];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -56,14 +63,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function createUser() {
             const user = body;
-
-            if (users.find(x => x.email === user.email)) {
-                return error(`User with the email ${user.email} already exists`);
-            }
-
             // assign user id and a few other properties then save
             user.id = newUserId();
-            delete user.confirmPassword;
             users.push(user);
             localStorage.setItem(usersKey, JSON.stringify(users));
 
@@ -73,15 +74,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function updateUser() {
             let params = body;
             let user = users.find(x => x.id === idFromUrl());
-
-            if (params.email !== user.email && users.find(x => x.email === params.email)) {
-                return error(`User with the email ${params.email} already exists`);
-            }
-
-            // only update password if entered
-            if (!params.password) {
-                delete params.password;
-            }
 
             // update and save user
             Object.assign(user, params);
