@@ -10,7 +10,7 @@ const routes: Routes = [
     { path: 'users', loadChildren: usersModule },
 
     // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+    //{ path: '**', redirectTo: '' }
 ];
 
 @NgModule({
