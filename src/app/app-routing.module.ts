@@ -6,11 +6,9 @@ import { HomeComponent } from './home';
 const usersModule = () => import('./users/users.module').then(x => x.UsersModule);
 
 const routes: Routes = [
-  //  { path: '', component: HomeComponent },
+
     { path: 'users', loadChildren: usersModule },
 
-    // otherwise redirect to home
-    //{ path: '**', redirectTo: '' }
 ];
 
 @NgModule({
