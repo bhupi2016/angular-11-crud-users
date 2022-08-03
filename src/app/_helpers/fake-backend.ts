@@ -101,8 +101,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function basicDetails(user: any) {
-            const { id, title, firstName, lastName, email, role } = user;
-            return { id, title, firstName, lastName, email, role };
+            const { id, firstName, lastName } = user;
+            return { id,firstName, lastName };
         }
 
         function idFromUrl() {
