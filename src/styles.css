@@ -17,5 +17,5 @@ a {
     background-color: rgb(255, 255, 255) !important;
   }
 .mat-row:hover {
-  background-color: rgb(224, 218, 218);
+  background-color: rgb(224, 218, 218) !important;
 }
